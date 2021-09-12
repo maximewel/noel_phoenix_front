@@ -4,6 +4,7 @@ import React, { Component } from 'react';
 import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
 import Typography from '@material-ui/core/Typography';
+import apiUrl from '../api/ApiCaller'
 
 export default class ApiDisplay extends Component {
     constructor(props) {
@@ -36,7 +37,7 @@ export default class ApiDisplay extends Component {
     }
 
     componentDidMount() {
-        fetch('http://127.0.0.1:8000/api/users/', {
+        fetch(apiUrl + '/users/', {
             method: "GET",
         })
             .then(response => response.json())
