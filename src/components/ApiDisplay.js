@@ -27,6 +27,9 @@ export default class ApiDisplay extends Component {
         return (
             <Card>
                 <CardContent>
+                    <Typography>
+                        env: {process.env.NODE_ENV}
+                    </Typography>
                     <Typography color="textPrimary" gutterBottom>
                         Base
                     </Typography>
