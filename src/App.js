@@ -1,5 +1,6 @@
 import logo from './logo.svg';
 import { Button } from '@material-ui/core';
+import ApiDisplay from './components/ApiDisplay.js'
 import './App.css';
 
 function App() {
@@ -20,6 +21,7 @@ function App() {
         </a>
       </header>
       <Button color="primary">Hello material-UI button :-)</Button>
+      <ApiDisplay></ApiDisplay>
     </div>
   );
 }
