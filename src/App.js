@@ -1,28 +1,27 @@
-import logo from './logo.svg';
-import { Button } from '@material-ui/core';
-import ApiDisplay from './components/ApiDisplay.js'
 import './App.css';
+import {
+  Switch,
+  Route,
+  Link,
+  withRouter
+} from "react-router-dom";
+import ApiDisplay from './components/ApiDisplay';
+import Account from './components/account/Account';
+import Home from './components/home/Home';
+import Admin from './components/admin/Admin';
+import Navbar from './components/partials/Navbar';
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-      <Button color="primary">Hello material-UI button :-)</Button>
-      <ApiDisplay></ApiDisplay>
-    </div>
+    <>
+      <Navbar />
+        <Switch>
+          <Route path="/account" component={Account} />
+          <Route path="/admin" component={Admin} />
+          <Route exact path="/" component={Home} />
+        </Switch>
+      <ApiDisplay />
+    </>
   );
 }
 
