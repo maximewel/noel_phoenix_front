@@ -1,9 +1,9 @@
 import './App.css';
 import {
-  BrowserRouter as Router,
   Switch,
   Route,
   Link,
+  withRouter
 } from "react-router-dom";
 import ApiDisplay from './components/ApiDisplay';
 import Account from './components/account/Account';
@@ -13,39 +13,15 @@ import Navbar from './components/partials/Navbar';
 
 function App() {
   return (
-    <div>
+    <>
       <Navbar />
-      <Router>
-        <div>
-          <nav>
-            <ul>
-              <li>
-                <Link to="/">Home</Link>
-              </li>
-              <li>
-                <Link to="/admin">Admin</Link>
-              </li>
-              <li>
-                <Link to="/account">Account</Link>
-              </li>
-            </ul>
-          </nav>
-
-          <Switch>
-            <Route path="/account">
-              <Account />
-            </Route>
-            <Route path="/admin">
-              <Admin />
-            </Route>
-            <Route path="/">
-              <Home />
-            </Route>
-          </Switch>
-        </div>
-      </Router>
+        <Switch>
+          <Route path="/account" component={Account} />
+          <Route path="/admin" component={Admin} />
+          <Route exact path="/" component={Home} />
+        </Switch>
       <ApiDisplay />
-    </div>
+    </>
   );
 }
 
