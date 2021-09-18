@@ -4,6 +4,8 @@ import FacebookLogin from 'react-facebook-login';
 export default class FbButton extends Component {
     constructor(props) {
         super(props);
+    
+        this.loadUser = this.loadUser.bind(this);
     }
 
     render() {
