@@ -17,5 +17,8 @@ export default class FbButton extends Component {
     responseFacebook(response){
         console.log("Received fb response: ");
         console.log(response);
+        if(response){
+            this.props.loadUser(response);
+        }
     }
 }
