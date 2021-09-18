@@ -2,8 +2,6 @@ import './App.css';
 import {
   Switch,
   Route,
-  Link,
-  withRouter
 } from "react-router-dom";
 import ApiDisplay from './components/ApiDisplay';
 import Account from './components/account/Account';
