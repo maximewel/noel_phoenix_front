@@ -2,6 +2,10 @@ import React, { Component } from 'react'
 import FacebookLogin from 'react-facebook-login';
 
 export default class FbButton extends Component {
+    constructor(props) {
+        super(props);
+    }
+
     render() {
         return (
             <div>
