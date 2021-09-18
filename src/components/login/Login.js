@@ -11,8 +11,9 @@ export default class Login extends Component {
     }
 
     loadUser = (response) => {
+        console.log("User : " + response.name);
         this.setState({      
-            user: response.username,
+            user: response.name,
          });
     }
 
