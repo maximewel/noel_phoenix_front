@@ -10,6 +10,12 @@ export default class Login extends Component {
         };  
     }
 
+    loadUser = (response) => {
+        this.setState({      
+            user: response.username,
+         });
+    }
+
     render() {
         return (
             <div>
@@ -20,11 +26,5 @@ export default class Login extends Component {
 
             </div>
         )
-    }
-
-    loadUser(response){
-        this.setState({      
-            user: response.username,
-         });
     }
 }
