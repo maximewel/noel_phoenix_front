@@ -8,7 +8,6 @@ export default class FbButton extends Component {
             <div>
                 <FacebookLogin
                 appId="182977177249662"
-                autoLoad={true}
                 fields="name,email,picture"
                 callback={this.responseFacebook} />
             </div>
