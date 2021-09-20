@@ -12,15 +12,15 @@ export default class Login extends Component {
     }
 
     loadUser = (response) => {
-        console.log("Reponse : ");
-        console.log(response);
         //update user visualisation
         this.setState({      
             user: response.name,
         });
         
+        let gifts = apiCaller.request('get', '/api/gifts/');
+        console.log(gifts);
         //load into API
-        let resp = apiCaller.loginFromFacebook(response.token);
+        let resp = apiCaller.loginFromFacebook(response.accessToken);
         console.log(resp);
         let gifts = apiCaller.request('get', '/api/gifts/');
         console.log(gifts);
