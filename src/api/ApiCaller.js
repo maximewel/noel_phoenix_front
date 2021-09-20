@@ -63,8 +63,8 @@ class ApiCaller {
     //Request method - generalize the requests to the API (tokens and refresh managment)
     async request(method, requestUrl, body = null, retry = false) {
         let headers = new Headers({
-            'Accept': 'application/json',
-            'Content-Type': 'application/json',
+            'accept': 'application/json',
+            'content-type': 'application/json',
         });
         //add token if user is logged in
         if (this.aToken){
