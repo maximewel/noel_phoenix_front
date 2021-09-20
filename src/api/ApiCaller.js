@@ -114,14 +114,15 @@ class ApiCaller {
             const response = await this.request('POST', '/auth/convert-token', bodyFormData);
 
             //Update variables
-            console.log("Resp : " + response);
+            console.log("Resp : ");
+            console.log(response);
             this.aToken = response.access_token;
             this.rToken = response.refresh_token;
             console.log("New tokens : at " + this.aToken + " rt " + this.rToken);
 
-            return response.data;
+            return response;
         } catch (error) {
-            throw error.response.data;
+            throw error.response;
         }
     }
 }
