@@ -62,17 +62,22 @@ class ApiCaller {
 
     //Request method - generalize the requests to the API (tokens and refresh managment)
     async request(method, requestUrl, body = null, retry = false) {
+        let headers = new Headers({
+            'Accept': 'application/json',
+            'Content-Type': 'application/json',
+        });
+        //add token if user is logged in
+        if (this.aToken){
+            headers.append('Authorization', `Bearer ${this.aToken}`)
+        }
+
         var options = {
             method: method,
-            headers: new Headers({
-                'Authorization': `Bearer ${this.aToken}`,
-                'Accept': 'application/json',
-                'Content-Type': 'application/json',
-            }),
+            headers: headers,
             body: body
         }
 
-        let response = await fetch(`${this.url}${requestUrl}`, options)
+        let response = await fetch(`${this.apiUrl}${requestUrl}`, options)
             .then(response => {
                 if (response.status === 401) {
                     if (retry) {
@@ -82,11 +87,12 @@ class ApiCaller {
                     this.update_refresh_token();
                     this.request(method, requestUrl, body, true);
                 }
+                return response;
             })
             .then(resp => resp.json())
             .catch(err => console.log("Could not perform request - error: " + err));
 
-        return response?.data;
+        return response;
     }
 
     //Update the access token using the refresh token
