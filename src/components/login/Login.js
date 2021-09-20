@@ -11,18 +11,18 @@ export default class Login extends Component {
         };  
     }
 
-    loadUser = (response) => {
+    loadUser = async (response) => {
         //update user visualisation
         this.setState({      
             user: response.name,
         });
         
-        let gifts = apiCaller.request('get', '/api/gifts/');
+        let gifts = await apiCaller.request('get', '/api/gifts/');
         console.log(gifts);
         //load into API
-        let resp = apiCaller.loginFromFacebook(response.accessToken);
+        let resp = await apiCaller.loginFromFacebook(response.accessToken);
         console.log(resp);
-        gifts = apiCaller.request('get', '/api/gifts/');
+        gifts = await apiCaller.request('get', '/api/gifts/');
         console.log(gifts);
     }
 
