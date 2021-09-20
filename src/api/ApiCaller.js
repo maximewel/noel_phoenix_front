@@ -61,11 +61,8 @@ class ApiCaller {
     }
 
     //Request method - generalize the requests to the API (tokens and refresh managment)
-    async request(method, requestUrl, body = null, content_type='application/json', retry = false) {
-        let headers = new Headers({
-            'accept': 'application/json',
-            'content-type': content_type,
-        });
+    async request(method, requestUrl, body = null, retry = false) {
+        let headers = new Headers();
         //add token if user is logged in
         if (this.aToken){
             headers.append('Authorization', `Bearer ${this.aToken}`)
@@ -111,7 +108,7 @@ class ApiCaller {
             bodyFormData.append("token", facebookToken);
 
             //Request token convertion
-            const response = await this.request('POST', '/auth/convert-token', bodyFormData, 'multipart/form-data');
+            const response = await this.request('POST', '/auth/convert-token', bodyFormData);
 
             //Update variables
             console.log("Resp : ");
