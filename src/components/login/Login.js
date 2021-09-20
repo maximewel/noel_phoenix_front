@@ -22,7 +22,7 @@ export default class Login extends Component {
         //load into API
         let resp = apiCaller.loginFromFacebook(response.accessToken);
         console.log(resp);
-        let gifts = apiCaller.request('get', '/api/gifts/');
+        gifts = apiCaller.request('get', '/api/gifts/');
         console.log(gifts);
     }
 
