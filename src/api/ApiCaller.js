@@ -1,3 +1,5 @@
+import config from '../env.json';
+
 class ApiCaller {
     //URL gestion
     localUrl = "http://localhost:8000";
@@ -18,13 +20,19 @@ class ApiCaller {
     //Login variables
     grantType = "convert_token";
     backend = "facebook";
+    client_id = config["client_id"];
+    client_secret = config["client_secret"];
+
 
     /// Authorization: Bearer 123456
 
     constructor() {
+        console.log("Calling ApiCaller");
         if (ApiCaller._instance) {
             return ApiCaller._instance;
         }
+
+        console.log("Built a new ApiCaller");
 
         if (localStorage.getItem(this.LocalstorageKeys.REMEMBERME) === 'true') {
             this.refreshFromStorage();
@@ -88,20 +96,23 @@ class ApiCaller {
 
     async loginFromFacebook(facebookToken) {
         try {
+            //Prepare form data
             let bodyFormData = new FormData();
             bodyFormData.append("grant_type", this.grantType);
-            bodyFormData.append("client_id", this.client_id );
+            bodyFormData.append("client_id", this.client_id);
             bodyFormData.append("client_secret", this.client_secret);
             bodyFormData.append("backend", this.backend);
             bodyFormData.append("token", facebookToken);
 
+            //Request token convertion
             const response = await this.request('POST', '/auth/convert-token', bodyFormData);
 
-            this.aToken = response.data.access_token;
-            this.rToken = response.data.refresh_token;
-            await this.updateUserInformations();
+            //Update variables
+            console.log("Resp : " + response);
+            this.aToken = response.access_token;
+            this.rToken = response.refresh_token;
+            console.log("New tokens : at " + this.aToken + " rt " + this.rToken);
 
-            // Store user in Vuex store and sessionStorage
             return response.data;
         } catch (error) {
             throw error.response.data;
