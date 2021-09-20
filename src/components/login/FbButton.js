@@ -8,15 +8,13 @@ export default class FbButton extends Component {
             <div>
                 <FacebookLogin
                 appId="182977177249662"
-                fields="name,email,picture"
+                fields="name,email"
                 callback={this.responseFacebook} />
             </div>
         )
     }
 
     responseFacebook = (response) => {
-        console.log("Received fb response: ");
-        console.log(response);
         if(response){
             this.props.loadUser(response);
         }

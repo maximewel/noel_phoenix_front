@@ -12,6 +12,8 @@ export default class Login extends Component {
     }
 
     loadUser = (response) => {
+        console.log("Reponse : ");
+        console.log(response);
         //update user visualisation
         this.setState({      
             user: response.name,
