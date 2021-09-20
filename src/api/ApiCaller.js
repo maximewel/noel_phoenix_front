@@ -1,4 +1,3 @@
-import config from '../env.json';
 
 class ApiCaller {
     //URL gestion
@@ -20,8 +19,9 @@ class ApiCaller {
     //Login variables
     grantType = "convert_token";
     backend = "facebook";
-    client_id = config["client_id"];
-    client_secret = config["client_secret"];
+    CONFIG = require('../env.json');
+    client_id = this.CONFIG.client_id;
+    client_secret = this.CONFIG.client_secret;
 
 
     /// Authorization: Bearer 123456
